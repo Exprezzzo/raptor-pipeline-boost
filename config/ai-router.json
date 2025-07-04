@@ -1,0 +1,122 @@
+{
+  "version": "4.1.2",
+  "models": {
+    "claude": {
+      "provider": "anthropic",
+      "model": "claude-3-opus-20240229",
+      "endpoint": "https://api.anthropic.com/v1/messages",
+      "specialties": [
+        "code_generation",
+        "architecture",
+        "complex_logic",
+        "story_writing",
+        "analysis",
+        "security_rules"
+      ],
+      "maxTokens": 4096,
+      "temperature": 0.7,
+      "topP": 0.9,
+      "fallbackTimeout": 10000,
+      "retryAttempts": 2
+    },
+    "gemini": {
+      "provider": "google",
+      "model": "gemini-pro",
+      "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro",
+      "specialties": [
+        "visual_design",
+        "ui_ux",
+        "3d_modeling",
+        "multimodal",
+        "creative_ideas",
+        "design_systems"
+      ],
+      "maxTokens": 2048,
+      "temperature": 0.8,
+      "topP": 0.95,
+      "fallbackTimeout": 8000,
+      "retryAttempts": 2
+    },
+    "openai": {
+      "provider": "openai",
+      "model": "gpt-4-turbo-preview",
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "specialties": [
+        "general_tasks",
+        "debugging",
+        "documentation",
+        "quick_answers",
+        "data_processing",
+        "testing"
+      ],
+      "maxTokens": 4096,
+      "temperature": 0.7,
+      "topP": 0.9,
+      "fallbackTimeout": 10000,
+      "retryAttempts": 3
+    }
+  },
+  
+  "routing_rules": {
+    "code_tasks": {
+      "primary": "claude",
+      "fallback": ["openai", "gemini"],
+      "keywords": ["code", "function", "component", "algorithm", "logic"]
+    },
+    "design_tasks": {
+      "primary": "gemini",
+      "fallback": ["claude", "openai"],
+      "keywords": ["design", "ui", "ux", "layout", "style", "visual"]
+    },
+    "writing_tasks": {
+      "primary": "claude",
+      "fallback": ["gemini", "openai"],
+      "keywords": ["write", "story", "narrative", "content", "copy"]
+    },
+    "analysis_tasks": {
+      "primary": "claude",
+      "fallback": ["openai", "gemini"],
+      "keywords": ["analyze", "review", "audit", "evaluate", "assess"]
+    },
+    "testing_tasks": {
+      "primary": "openai",
+      "fallback": ["claude", "gemini"],
+      "keywords": ["test", "debug", "fix", "error", "bug"]
+    },
+    "documentation_tasks": {
+      "primary": "openai",
+      "fallback": ["claude", "gemini"],
+      "keywords": ["document", "readme", "guide", "tutorial", "explain"]
+    },
+    "default": {
+      "primary": "claude",
+      "fallback": ["gemini", "openai"]
+    }
+  },
+  
+  "performance_optimizations": {
+    "enableCaching": true,
+    "cacheDuration": 3600,
+    "enableBatching": true,
+    "maxBatchSize": 10,
+    "enableParallelRequests": true,
+    "maxParallelRequests": 3
+  },
+  
+  "error_handling": {
+    "logErrors": true,
+    "notifyOnFailure": true,
+    "fallbackMessages": {
+      "allModelsFailed": "All AI models are currently unavailable. Please try again later.",
+      "rateLimited": "You've exceeded the rate limit. Please wait before trying again.",
+      "invalidRequest": "Invalid request format. Please check your input."
+    }
+  },
+  
+  "monitoring": {
+    "trackUsage": true,
+    "trackLatency": true,
+    "trackErrors": true,
+    "reportingInterval": 300000
+  }
+}

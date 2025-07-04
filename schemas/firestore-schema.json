@@ -1,0 +1,72 @@
+{
+  "collections": {
+    "users": {
+      "description": "System users with roles and permissions",
+      "fields": {
+        "uid": "string",
+        "email": "string",
+        "displayName": "string",
+        "photoURL": "string | null",
+        "role": "admin | user | guest",
+        "createdAt": "timestamp",
+        "lastLogin": "timestamp",
+        "isActive": "boolean",
+        "subscription": {
+          "plan": "free | pro | enterprise",
+          "status": "active | canceled | past_due",
+          "expiresAt": "timestamp"
+        }
+      }
+    },
+    "projects": {
+      "description": "Creative projects (apps, games, stories, etc)",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "type": "webapp | game | story | video | 3d | presentation",
+        "description": "string",
+        "owner": "userId",
+        "collaborators": ["userId"],
+        "createdAt": "timestamp",
+        "lastModified": "timestamp",
+        "aiModels": ["claude | gemini | openai"],
+        "status": "draft | active | archived",
+        "settings": {
+          "isPublic": "boolean",
+          "allowComments": "boolean",
+          "requireAuth": "boolean"
+        }
+      }
+    },
+    "ai_sessions": {
+      "description": "AI conversation history and usage",
+      "fields": {
+        "sessionId": "string",
+        "userId": "string",
+        "projectId": "string",
+        "model": "claude | gemini | openai",
+        "messages": [{
+          "role": "user | assistant",
+          "content": "string",
+          "timestamp": "timestamp"
+        }],
+        "totalTokens": "number",
+        "createdAt": "timestamp"
+      }
+    },
+    "templates": {
+      "description": "Reusable project templates",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "category": "string",
+        "description": "string",
+        "thumbnail": "string",
+        "config": "object",
+        "downloads": "number",
+        "rating": "number",
+        "createdBy": "userId"
+      }
+    }
+  }
+}

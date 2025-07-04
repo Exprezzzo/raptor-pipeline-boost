@@ -1,0 +1,108 @@
+{
+  "manifest_version": "1.0.0",
+  "schema_version": "4.1.2",
+  "generated_at": "2024-12-30T00:00:00Z",
+  "platform": "Raptor Pipeline Architect",
+  
+  "ai_agents": {
+    "claude": {
+      "provider": "Anthropic",
+      "model": "claude-3-opus-20240229",
+      "role": "Logic & Architecture Lead",
+      "responsibilities": [
+        "Complex code generation",
+        "System architecture design",
+        "Security rule creation",
+        "Algorithm optimization",
+        "Story and narrative writing"
+      ],
+      "owns_files": [
+        "schemas/firestore.rules",
+        "templates/types.ts",
+        "examples/universalAI.ts",
+        "lib/ai-router.ts"
+      ]
+    },
+    
+    "gemini": {
+      "provider": "Google",
+      "model": "gemini-pro",
+      "role": "Visual & Creative Lead",
+      "responsibilities": [
+        "UI/UX design generation",
+        "3D model concepts",
+        "Visual asset creation",
+        "Design system tokens",
+        "Multimodal processing"
+      ],
+      "owns_files": [
+        "templates/ui-components/",
+        "config/design-tokens.json",
+        "examples/3d-templates/",
+        "styles/"
+      ]
+    },
+    
+    "openai": {
+      "provider": "OpenAI",
+      "model": "gpt-4-turbo-preview",
+      "role": "Utility & Debug Lead",
+      "responsibilities": [
+        "Test generation",
+        "Documentation writing",
+        "Debug assistance",
+        "YAML/JSON configs",
+        "General utility tasks"
+      ],
+      "owns_files": [
+        "tests/",
+        "README.md",
+        "changelog.md",
+        ".github/workflows/",
+        "config/gpt-instructions.md"
+      ]
+    }
+  },
+  
+  "routing_priority": {
+    "code_generation": ["claude", "openai", "gemini"],
+    "visual_design": ["gemini", "claude", "openai"],
+    "testing": ["openai", "claude", "gemini"],
+    "documentation": ["openai", "claude", "gemini"],
+    "architecture": ["claude", "gemini", "openai"]
+  },
+  
+  "schema_collections": [
+    {
+      "name": "users",
+      "version": "1.2.0",
+      "fields_count": 9,
+      "indexes": 1
+    },
+    {
+      "name": "projects",
+      "version": "2.0.0",
+      "fields_count": 12,
+      "indexes": 2
+    },
+    {
+      "name": "ai_sessions",
+      "version": "1.0.0",
+      "fields_count": 7,
+      "indexes": 1
+    },
+    {
+      "name": "templates",
+      "version": "1.1.0",
+      "fields_count": 9,
+      "indexes": 1
+    }
+  ],
+  
+  "integration_status": {
+    "firebase": "active",
+    "github": "active",
+    "custom_gpt": "active",
+    "memory": "enabled"
+  }
+}
